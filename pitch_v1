@@ -1,0 +1,22 @@
+# Select most recent object
+
+	# Don't know how yet
+
+# Create pitch object for selected audio
+
+To Pitch: 0, 75, 600
+
+
+# Draw pitch countour
+
+Erase all
+Draw: 0, 0, 0, 500, "yes"
+
+
+# Get mean pitch value for selected pitch object
+
+mean = Get mean: 0, 0, "Hertz"
+mean$ = Get mean: 0, 0, "Hertz"
+
+writeInfoLine: "Den gennemsnitlige pitch i den valgte lydfil:"
+appendInfoLine: mean$

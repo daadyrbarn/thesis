@@ -1,0 +1,16 @@
+Mandag 13/8-18
+Projektet genoptaget.
+Har kodet lidt i python for at komme igang igen.
+Skal finde det eksempel i CLAN, som jeg brugte til at begynde med.
+Skal genopfriske Praat-scripting, så jeg kan fortsætte med kodningen.
+Vigtige overvejelser:
+Hvordan får jeg Praat til at finde de relevante pitch-værdier;
+det kræver et data-eksempel. Skal det baseres på den gennemsnitlige pitch i ytringen,
+og skal det evt. omregnes til semi-toner?
+Der skal udformes et framework til at bedømme, hvornår pitch-peaks er distinkte nok
+til at inkludere i transskriptionen.
+I virkeligheden skal jeg undersøge, om det er muligt at finde sidste trykstærke
+stavelse i Praat. Hvis det kan lade sig gøre, skal jeg først og fremmest fokusere
+på at finde F0 på det givne punkt, og udregne hvordan den afviger fra mean pitch.
+Muligvis skal mean pitch baseres på en form for vægtet gennemsnit. Der er Ethan
+nok den bedste at spørge.

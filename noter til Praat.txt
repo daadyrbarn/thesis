@@ -1,0 +1,2 @@
+- Hele lydklippet kan vælges ved at startværdien til 0s og slutværdien til et
+  arbitrært højt tal (eks 10.000s)

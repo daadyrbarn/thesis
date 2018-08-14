@@ -16,3 +16,15 @@ Muligvis skal mean pitch baseres på en form for vægtet gennemsnit. Der er Etha
 nok den bedste at spørge.
 Kan det muligvis give mening at finde pitch ved alle trykstærke stavelser i
 ytringen og lave en transskription af intonation derudfra?
+
+Tirsdag 14/8
+Hul på bylden.
+Har kigget på to eksempler fra samtalen. Har fundet ud af at Praat kan finde
+intensity peaks, så er ét skridt nærmere at kunne finde pitch ved sidste trykstærke
+stavelse.
+Næste mål er så at finde den rigtige peak. Dette kan muligvis gøres ved at finde
+mean intensity og så tage den sidste peak der ligger over det gennemsnit. Det er
+dog ikke sikkert at det konsekvent giver et retvisende resultat. Det kræver nok
+en gennemgang af rigtig mange forskellige eksempler. Måske må jeg bide i det sure
+æble og lave et fucking excel-ark.
+En ekstra skærm ville gøre underværker i den proces.

@@ -1,2 +1,20 @@
 - Hele lydklippet kan vælges ved at startværdien til 0s og slutværdien til et
-  arbitrært højt tal (eks 10.000s)
+  arbitrært højt tal (eks 10000s)
+
+- I stedet for gennemsnitlig pitch, er det så bedre at finde medianen?
+  - NEJ, praat kan ikke finde ud af minimum pitch på en hel ytring.
+    - Dette kan måske bruges hvis pitch findes ved alle trykstærke stavelser
+    - Det er altså ikke relevant for metode 1, men muligvis for metode 2
+
+- Det virker svært (umuligt?) at få praat til selv at finde intensity peaks.
+  - Muligvis kan jeg vælge et tidsrum og finde den højeste værdi for intensity.
+  - Dernæst kan jeg måske finde tiden for den værdi, og til sidst finde pitch
+    ved den tid.
+  - Det kræver noget matematik...
+
+- Måske: To Intensity -> To IntensityTier (Peaks)
+
+- KÆMPE problem: samtalen varierer ret meget i intensity, så det er svært at
+  definere en bundlinje for intensity peaks. Det lader heller ikke rigtigt til at
+  man kan inkludere en bundlinje på nogen nem måde. (man kan selvfølgelig tjekke
+  hver værdi mod en minimumsgrænse inden den tælles med)

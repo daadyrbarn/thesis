@@ -1,0 +1,21 @@
+## Sådan vil jeg gerne have mit praat script til at fungere:
+
+## Metode 1: find ytringsfinal intonation
+
+Find gennemsnitlig pitch
+  Gem den i en variabel A
+
+Find tidspunkt for sidste intensity peak
+  Find pitch ved dette tidspunkt
+    Gem den i en variabel B
+  Find afstand til gennemsnit A
+    Gem den i en variabel C
+
+if B er tilstrækkelig over A (positiv C værdi)
+  Notér som stigende intonation
+elif B er tilstrækkelig under A (negativ C værdi)
+  Notér som faldende intonation
+else
+  Notér som jævn intonation
+
+Tegn graf til verifikation

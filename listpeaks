@@ -1,0 +1,60 @@
+sound = selected ("Sound")
+# Create objects:
+pitch = To Pitch: 0.0, 100, 600
+selectObject: sound
+intensity = To Intensity: 100, 0
+iPeaks = To IntensityTier (peaks)
+
+
+# Create variables:
+selectObject: sound
+duration$ = Get total duration
+
+selectObject: pitch
+minPitch$ = Get minimum: 0, 0, "Hertz", "Parabolic"
+maxPitch$ = Get maximum: 0, 0, "Hertz", "Parabolic"
+meanPitch$ = Get mean: 0, 0, "Hertz"
+
+selectObject: intensity
+minIntensity$ = Get minimum: 0, 0, "Parabolic"
+maxIntensity$ = Get maximum: 0, 0, "Parabolic"
+meanIntensity$ = Get mean: 0, 0, "energy"
+
+selectObject: iPeaks
+numPeaks = Get number of points
+numPeaks$ = Get number of points
+
+
+# Write baseline info:
+clearinfo
+appendInfoLine: "Total duration: ", duration$
+appendInfoLine: ""
+appendInfoLine: "Pitch info:"
+appendInfoLine: "  Min pitch: ", minPitch$
+appendInfoLine: "  Max pitch: ", maxPitch$
+appendInfoLine: "  Mean pitch: ", meanPitch$
+appendInfoLine: ""
+appendInfoLine: "Intensity info:"
+appendInfoLine: "  Min intensity: ", minIntensity$
+appendInfoLine: "  Max intensity: ", maxIntensity$
+appendInfoLine: "  Mean intensity: ", meanIntensity$
+appendInfoLine: ""
+appendInfoLine: "Pitch at intensity peaks:"
+appendInfoLine: "  Number of peaks: ", numPeaks$
+appendInfoLine: ""
+
+for i to numPeaks
+  selectObject: iPeaks
+  t = Get time from index: i
+  t$ = Get time from index: i
+  appendInfoLine: "Peak ", i, ":  ", t$
+
+  int = Get value at time: t
+  int$ = Get value at time: t
+  appendInfoLine: "  Intensity: ", int$
+
+  selectObject: pitch
+  pit = Get value at time: t, "Hertz", "Linear"
+  pit$ = Get value at time: t, "Hertz", "Linear"
+  appendInfoLine: "  Pitch: ", pit$
+endfor

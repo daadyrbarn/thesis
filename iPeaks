@@ -1,0 +1,15 @@
+# Create intensity object from selected audio
+
+sound = selected ("Sound")
+
+
+int = To Intensity: 100, 0
+
+selectObject: int
+
+itiers = To IntensityTier (peaks)
+
+selectObject: itiers 
+
+Rename: "ipeaks"
+

@@ -1,0 +1,117 @@
+sound = selected ("Sound")
+# Create objects:
+pitch = To Pitch: 0.0, 100, 500
+selectObject: sound
+intensity = To Intensity: 100, 0
+iPeaks = To IntensityTier (peaks)
+Rename: "peaks"
+selectObject: intensity
+iValleys = To IntensityTier (valleys)
+Rename: "valleys"
+
+
+# Create variables:
+selectObject: sound
+duration = Get total duration
+startT = Get start time
+endT = Get end time
+
+selectObject: pitch
+minPitch = Get minimum: 0, 0, "Hertz", "Parabolic"
+maxPitch = Get maximum: 0, 0, "Hertz", "Parabolic"
+meanPitch = Get mean: 0, 0, "Hertz"
+
+selectObject: intensity
+minIntensity = Get minimum: 0, 0, "Parabolic"
+maxIntensity = Get maximum: 0, 0, "Parabolic"
+meanIntensity = Get mean: 0, 0, "energy"
+
+selectObject: iPeaks
+numPeaks = Get number of points
+emptyPeaks = 0
+
+selectObject: iValleys
+numValleys = Get number of points
+emptyValleys = 0
+
+
+clearinfo
+appendInfoLine: "Total duration: ", duration
+appendInfoLine: "Start: ", startT
+appendInfoLine: "End: ", endT
+appendInfoLine: ""
+appendInfoLine: "Pitch:"
+appendInfoLine: "  Min: ", minPitch
+appendInfoLine: "  Max: ", maxPitch
+appendInfoLine: "  Mean: ", meanPitch
+appendInfoLine: ""
+appendInfoLine: "Intensity:"
+appendInfoLine: "  Min: ", minIntensity
+appendInfoLine: "  Max: ", maxIntensity
+appendInfoLine: "  Mean: ", meanIntensity
+appendInfoLine: ""
+
+
+# Get time, intensity, and pitch at all intensity peaks:
+appendInfoLine: "Number of peaks: ", numPeaks
+appendInfoLine: ""
+appendInfoLine: "Times:"
+
+for i to numPeaks
+  selectObject: iPeaks
+  t = Get time from index: i
+  appendInfoLine: t
+endfor
+
+appendInfoLine: ""
+appendInfoLine: "Intensity:"
+
+for i to numPeaks
+  selectObject: iPeaks
+  t = Get time from index: i
+  int = Get value at time: t
+  appendInfoLine: int
+endfor
+
+appendInfoLine: ""
+appendInfoLine: "Pitch:"
+
+for i to numPeaks
+  selectObject: iPeaks
+  t = Get time from index: i
+  selectObject: pitch
+  pit = Get value at time: t, "Hertz", "Linear"
+  appendInfoLine: pit
+endfor
+
+
+# Get time, intensity, and pitch at all intensity valleys:
+appendInfoLine: ""
+appendInfoLine: "Number of valleys: ", numValleys
+appendInfoLine: ""
+
+appendInfoLine: "Times:"
+for i to numValleys
+  selectObject: iValleys
+  t = Get time from index: i
+  appendInfoLine: t
+endfor
+
+appendInfoLine: ""
+appendInfoLine: "Intensity:"
+for i to numValleys
+  selectObject: iValleys
+  t = Get time from index: i
+  int = Get value at time: t
+  appendInfoLine: int
+endfor
+
+appendInfoLine: ""
+appendInfoLine: "Pitch:"
+for i to numValleys
+  selectObject: iValleys
+  t = Get time from index: i
+  selectObject: pitch
+  pit = Get value at time: t, "Hertz", "Linear"
+  appendInfoLine: pit
+endfor

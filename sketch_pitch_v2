@@ -1,0 +1,21 @@
+# Første del af scriptet skal indeholde al koden fra 'listpeaks'-scriptet.
+...
+...
+...
+# Anden del af scriptet beskæftiger sig med at gemme målingerne i en midlertidig
+# liste til Praat, og i en permanent tekstfil, så andre programmer evt kan tilgå
+# dem.
+#
+# Lister i Praat laves med funktionen "Create Strings as tokens". Den tager en
+# tekst streng og laver den til en liste med hvert "ord" som et token i listen
+# (index: 1-n). Listen kan redigeres; der kan fjernes og tilføjes tokens, og
+# tokens kan "redigeres" (ved at erstatte dem med et nyt token).
+#
+# Kodens kompleksitet afhænger af, hvordan jeg vil have listen formatteret.
+# Formatteringen er dog ikke første prioritet.
+#
+# Jeg gemmer de tre pile i 'symbols.txt'. De kan hentes med funktionen "Read
+# Strings from raw text file".
+#
+###!!! Skal pilene illustrere pitch i forhold til gennemsnittet, eller i forhold
+#      til det foregående punkt på kurven???!?!?! Hvad giver mening?

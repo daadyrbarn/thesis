@@ -46,3 +46,20 @@ et sammenligningspunkt til pitch ved sidste trykstærke stavelse.
 Dagen er startet med læsning af litteratur, fordi jeg venter på kabel til ekstra
 skærm. Derefter skal jeg igang med at katalogisere bullets for at finde brugbare
 eksempler og relevante datapunkter.
+
+Lørdag 25/8
+Har afprøvet et script der sætter pile ind efter hver pitch-måling, baseret på om
+den er højere eller lavere end mean pitch. Det afspejler dog ikke den normale
+funktion for disse pile (nemlig stigende eller faldende intonation i forhold til
+det foregående i ytringen). Men scriptet virkede fint.
+Næste mål er at indsætte en pil efter sidste peak relativt til mean pitch.
+Det er nu lykkedes, men kun hvis sidste peak har pitch. Skal nu finde en måde at
+vælge den sidste peak som ikke er undefined. Det kræver muligvis et selvstændigt
+for-loop.
+'listpeaks_v2' finder nu den sidste peak med intonation og indsætter en pil, der
+markerer enten stigende, faldende, eller jævn intonationskontur i forhold til
+mean pitch. Scriptet inkluderer en pop-up til at indtaste hvor mange procent den
+må variere fra mean, før den ikke anses som jævn.
+Inden jeg går videre til at programmere næste metode (intonation relativ til
+pitch ved foregående peak), skal jeg teste scriptet på mine data, og sammenligne
+resultaterne med Jakobs transskription.

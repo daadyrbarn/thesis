@@ -82,6 +82,11 @@ for i to numPeaks
   pit$ = Get value at time: t, "Hertz", "Linear"
   appendInfoLine: "  Pitch: ", pit$
   appendInfoLine: ""
+  if pit$ = "--undefined-- Hz"
+    emptyPeaks = emptyPeaks+1
+  else
+    emptyPeaks = emptyPeaks+0
+  endif
 
 ## This will make a list of the pitch values that are not undefined.
 #  It will however only list them as strings, and therefore they can't
@@ -99,7 +104,7 @@ for i to numPeaks
 ## This is used to relate the mean pitch to the individual pitch levels.
   selectObject: pitch
   pitchDiff = pit-meanPitch
-  pitchDiffInt = (pitchDiff*pitchDiff)/pitchDiff
+  pitchDiffAbs = abs(pitchDiff)
 
 ## This version will only add an arrow if the last point has a pitch.
 ## Goal is to add arrow to the last point with defined pitch.
@@ -108,7 +113,7 @@ for i to numPeaks
 #  else
 #    if i = numPeaks
 #      selectObject: symbols
-#      if pitchDiffInt > pitchVar
+#      if pitchDiffAbs > pitchVar
 #        if pitchDiff > 0
 #          arrow$ = Get string: 3
 #          appendInfoLine: "  Pitch: ", pit$, "  ", arrow$
@@ -126,13 +131,15 @@ for i to numPeaks
 #  endif
 endfor
 
-appendInfoLine: ""
 appendInfoLine: "Peaks with no pitch: ", emptyPeaks
 appendInfoLine: ""
 
 
 
 ### Make a repeat loop that will check if pitch is defined.
+#   Start at last peak; if no pitch is found, increment down by one and repeat.
+#   When pitch is found, print info and terminate loop.
+
 x = numPeaks
 repeat
   selectObject: iPeaks
@@ -140,21 +147,33 @@ repeat
   selectObject: pitch
   pit = Get value at time: t, "Hertz", "Linear"
   pit$ = Get value at time: t, "Hertz", "Linear"
+
+  # The pitchDiff has to be redefined here, since the other instance is inside
+  # its own loop, and would otherwise always be based off the last iPeak.
+  pitchDiff = pit-meanPitch
+  pitchDiffAbs = abs(pitchDiff)
+
   if pit$ = "--undefined-- Hz"
     x = x-1
   else
     selectObject: symbols
-    if pitchDiffInt > pitchVar
+    if pitchDiffAbs > pitchVar
       if pitchDiff > 0
         arrow$ = Get string: 3
-        appendInfoLine: "  Pitch at end compared to mean:", arrow$
+        appendInfoLine: "Pitch at end compared to mean:"
+        appendInfoLine: "iPeak number: ", x, " of ", numPeaks, ",  Mean pitch: ", meanPitch$
+        appendInfoLine: "Pitch: ", pit$, ", Intonation: ", arrow$
       else
         arrow$ = Get string: 2
-        appendInfoLine: "  Pitch at end compared to mean:", arrow$
+        appendInfoLine: "Pitch at end compared to mean:"
+        appendInfoLine: "iPeak number: ", x, " of ", numPeaks, ",  Mean pitch: ", meanPitch$
+        appendInfoLine: "Pitch: ", pit$, ", Intonation: ", arrow$
       endif
     else
       arrow$ = Get string: 1
-      appendInfoLine: "Pitch at end compared to mean:  ", arrow$
+      appendInfoLine: "Pitch at end compared to mean:  "
+      appendInfoLine: "iPeak number: ", x, " of ", numPeaks, ",  Mean pitch: ", meanPitch$
+      appendInfoLine: "Pitch: ", pit$, ", Intonation: ", arrow$
     endif
     x = 1
   endif

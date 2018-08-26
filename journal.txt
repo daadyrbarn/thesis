@@ -63,3 +63,24 @@ må variere fra mean, før den ikke anses som jævn.
 Inden jeg går videre til at programmere næste metode (intonation relativ til
 pitch ved foregående peak), skal jeg teste scriptet på mine data, og sammenligne
 resultaterne med Jakobs transskription.
+
+Søndag 25/8
+Jakob har retranskriberet de bullets jeg har kørt scriptet på. Nu skal jeg prøve
+at se, hvordan min nuværende version af scriptet sætter pile sammenlignet med
+hans version.
+Det er et problem at pitchVar er baseret på min og max pitch i den enkelte
+ytring. Det er nødt til at være et fast interval. Hvis en ytring havde en min
+pitch på 180 Hz og max på 200 Hz, ville en pitch på 195 ses som markant over
+middel, selv om det kun er 5 Hz fra middel. Det vil jeg kigge nærmere på, efter
+jeg har snakket med Jakob om resultaterne.
+Næste skridt er v3. Min tanke er at finde sidste iPeak med pitch, og så se
+hvad der sker med pitchen derfra og hen til slutningen. Sidste iPeak kan godt
+komme efter sidste trykstærke stavelse, men det her er helt klart næste skridt
+på vejen til at finde noget der minder om sidste trykstærke stavelse.
+Metode:
+- Fra v2 har jeg loopet som finder pitch ved sidste iPeak.
+- Derfra burde jeg så kunne inkrementere fremad i meget små skridt (eg. 0,001s).
+- Når pitchen returnerer "undefined" er jeg så nået til slutningen og kan aflæse
+  pitchens kurve på denne strækning.
+- Denne metode vil også være instrumental, hvis det senere skulle lykkes mig at
+  definere og lokalisere sidste trykstærke stavelse.

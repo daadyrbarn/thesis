@@ -1,0 +1,68 @@
+# Sketch for v3
+
+sound = selected ("Sound")
+# Create objects:
+pitch = To Pitch: 0.0, 100, 500
+selectObject: sound
+intensity = To Intensity: 100, 0
+iPeaks = To IntensityTier (peaks)
+Rename: "peaks"
+
+# Load file with arrow symbols:
+symbols = Read Strings from raw text file: "symbols.txt"
+
+# Create variables:
+selectObject: sound
+duration$ = Get total duration
+startT$ = Get start time
+endT$ = Get end time
+
+selectObject: pitch
+minPitch = Get minimum: 0, 0, "Hertz", "Parabolic"
+minPitch$ = Get minimum: 0, 0, "Hertz", "Parabolic"
+maxPitch = Get maximum: 0, 0, "Hertz", "Parabolic"
+maxPitch$ = Get maximum: 0, 0, "Hertz", "Parabolic"
+meanPitch = Get mean: 0, 0, "Hertz"
+meanPitch$ = Get mean: 0, 0, "Hertz"
+
+selectObject: iPeaks
+numPeaks = Get number of points
+numPeaks$ = Get number of points
+emptyPeaks = 0
+
+# Write baseline info:
+clearinfo
+appendInfoLine: "Total duration: ", duration$
+appendInfoLine: "Start: ", startT$
+appendInfoLine: "End: ", endT$
+appendInfoLine: ""
+appendInfoLine: "Pitch info:"
+appendInfoLine: "  Min pitch: ", minPitch$
+appendInfoLine: "  Max pitch: ", maxPitch$
+appendInfoLine: "  Mean pitch: ", meanPitch$
+appendInfoLine: "  pitchVar: ", pitchVar
+appendInfoLine: ""
+
+### Make a repeat loop that will check if pitch is defined.
+#   Start at last peak; if no pitch is found, increment down by one and repeat.
+#   When pitch is found, print info and terminate loop.
+x = numPeaks
+hookT = 0
+repeat
+  selectObject: iPeaks
+  t = Get time from index: x
+  t$ = Get time from index: x
+  selectObject: pitch
+  pit = Get value at time: t, "Hertz", "Linear"
+  pit$ = Get value at time: t, "Hertz", "Linear"
+
+  if pit$ = "--undefined-- Hz"
+    x = x-1
+  else
+    hookT = t
+    appendInfoLine: "Hook @ peak ", x, " of ", numPeaks
+    appendInfoLine: "Time: ", t$
+    appendInfoLine: "Pitch: ", pit$
+    x = 1
+  endif
+until x = 1
